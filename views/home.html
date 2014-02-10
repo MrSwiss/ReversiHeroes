@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+  <div id="home-panel">
+    <div class="container home-container">
+        <div id="guest-block">
+          {% if guestError %}
+            <p class="error-msg">{{ guestError }}</p>
+          {% else %}
+            <h1>Be our guest</h1>
+            <p>If you're up for a quick game without user registration you can just go ahead and play as a guest.</p>
+            <a href="/guest" id="guest">Play as guest</a>
+          {% endif %}
+        </div>
+        <div id="signin-block">
+          <h1>Sign In</h1>
+          <form action="/" method="post" id="signin-form">
+            <label for="username">Username</label>
+            <input type="text" name="username" value="{{ values.username }}" id="username" autocomplete="off" autofocus="true">
+            <label for="password">password</label>
+            <input type="password" name="password" value="{{ values.password }}" id="password">
+            {% if errors %}
+            <p class="error-msg">{{ errors.msg }}</p>
+            {% endif %}
+            <p><a href="/recovery">Forgot your pasword?</a></p>
+            <input type="submit" value="Sign In">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

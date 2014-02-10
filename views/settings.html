@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+  <div class="container">
+    <div id="settings-block">
+    <form action="/settings" method="post">
+      <label for="email">Email</label>
+      <input type="email" name="email" value="{{ values.email }}" id="email" autofocus="true" autocomplete="off">
+      {% if errors.email %}
+      <p class="error-msg">{{ errors.email.msg }}</p>
+      {% endif %}
+
+      <label for="password">Password</label>
+      <input type="password" name="password" value="{{ values.password }}" id="password">
+      <label for="repeat">Repeat password</label>
+      <input type="password" name="repeat" value="{{ values.repeat }}" id="password">
+
+      {% if errors.password %}
+      <p class="error-msg">{{ errors.password.msg }}</p>
+      {% endif %}
+
+      <input type="submit" value="Submit">
+      <a href="/play" class="btn-danger">Cancel</a>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+  <div class="container">
+    <div id="signup-block">
+      <h1>Password Recovery</h1>
+    <form action="/recovery" method="post">
+      <label for="email">Email</label>
+      <input type="email" name="email" value="{{ values.email }}" id="email" autofocus="true">
+      {% if errors.email %}
+      <p class="error-msg">{{ errors.email.msg }}</p>
+      {% endif %}
+      <input type="submit" value="Submit">
+    </form>
+    </div>
+  </div>
+{% endblock %}

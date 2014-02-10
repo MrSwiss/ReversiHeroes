@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+  <div class="container">
+    <div id="signup-block">
+      <h1>Sign Up</h1>
+    <form action="/signup" method="post">
+      <label for="username">Username</label>
+      <input type="text" name="username" value="{{ values.username }}" id="username" autofocus="true" autocomplete="off">
+      {% if errors.username %}
+      <p class="error-msg">{{ errors.username.msg }}</p>
+      {% endif %}
+
+      <label for="email">Email</label>
+      <input type="email" name="email" value="{{ values.email }}" id="email">
+      {% if errors.email %}
+      <p class="error-msg">{{ errors.email.msg }}</p>
+      {% endif %}
+
+      <label for="password">Password</label>
+      <input type="password" name="password" value="{{ values.password }}" id="password">
+      {% if errors.password %}
+      <p class="error-msg">{{ errors.password.msg }}</p>
+      {% endif %}
+
+      <input type="submit" value="Sign Up">
+    </form>
+    </div>
+  </div>
+{% endblock %}

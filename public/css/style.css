@@ -1,0 +1,777 @@
+/**********************
+ ***** animations *****
+ **********************/
+@-webkit-keyframes show-animation {
+  0% {
+    margin-top: -100%;
+    bottom: 100%;
+  }
+  100% {
+    margin-top: 0;
+  }
+}
+
+@-moz-keyframes show-animation {
+  0% {
+    margin-top: -100%;
+    bottom: 100%;
+  }
+  100% {
+    margin-top: 0;
+  }
+}
+
+@-webkit-keyframes hide-animation {
+  0% {
+    margin-top: 0;
+  }
+  100% {
+    margin-top: -100%;
+    bottom: 100%;
+  }
+}
+
+@-moz-keyframes hide-animation {
+  0% {
+    margin-top: 0;
+  }
+  100% {
+    margin-top: -100%;
+    bottom: 100%;
+  }
+}
+
+@-webkit-keyframes appear-animation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes appear-animation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes error-animation {
+  0% {
+    color: color: #e55;
+  }
+  100% {
+    color: #FD008B;
+  }
+}
+
+@-moz-keyframes error-animation {
+  0% {
+    color: color: #e55;
+  }
+  100% {
+    color: #FD008B;
+  }
+}
+
+/*****************
+ ***** reset *****
+ *****************/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline;
+}
+:focus {
+  outline: 0;
+}
+html {
+  height: 100%;
+}
+body {
+  position: relative;
+  min-height: 100%;
+  line-height: 1.5em;
+  color: black;
+  background: white;
+  color: #333;
+  font-family: 'Arial', 'helvetica neue', helvetica, sans-serif;
+  background-color: rgb(56, 139, 209);;
+  background-image: url(../img/background.png);
+  padding-bottom: 3em;
+}
+label {
+  display: block;
+}
+input, button {
+    font-family: 'helvetica neue', helvetica, arial, sans-serif;
+}
+input[type=text], input[type=password], input[type=email] {
+  display: block;
+  font-size: 1em;
+  padding: 0.5em;
+  width: 100%;
+  border: 1px solid #ddd;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin-bottom: 1.5em;
+  font-family: inherit;
+}
+input[type=submit] {
+  border: 0;
+  padding: 0.5em 1em;
+  background-color: #ccc;
+  font-size: 1em;
+  font-family: inherit;
+  cursor: pointer;
+  line-height: 1.5em;
+  height: 40px;
+}
+input[type=submit]:hover {
+  background-color: #eee;
+}
+ol, li, ul {
+  list-style: none;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+}
+blockquote, q {
+  quotes: "" "";
+}
+
+/******************
+ ***** styles *****
+ ******************/
+
+header {
+  background-color: #42BDC2;
+  background-color: #fff;
+  background-color: rgb(56, 139, 209);
+  border-bottom: 1px solid #2568a0;
+  color: #fff;
+  font-weight: bold;
+  font-size: 26px;
+  line-height: 2.5em;
+}
+header a {
+  color: #fff;
+}
+header:after {
+  content:" ";
+  display: block;
+  clear: both;
+}
+footer {
+  font-size: 12px;
+  text-transform: uppercase;
+  line-height: 3em;
+  color: #aaa;
+}
+a {
+  color: #fff;
+  text-decoration: none;
+}
+li {
+  padding: 10px;
+}
+#navigation {
+  font-size: 0.7em;
+  float: right;
+  text-transform: none;
+}
+#navigation a {
+  margin-left: 2em;
+  font-weight: normal;
+  display: block;
+  padding: 0 0.5em;
+  float: right;
+}
+#navigation a:hover {
+  background-color: #2568A0;
+}
+#logo {
+  float: left;
+}
+#guest {
+  border: 0;
+  background-color: #7FC242;
+  background-color: #90ca5c;
+  color: #fff;
+  font-size: 24px;
+  padding: 1em;
+  display: inline-block;
+  margin-top: 1em;
+  text-align: center;
+}
+#guest:hover {
+  background-color: #6eab37;
+}
+#guest:hover,
+#request-panel-accept:hover,
+#request-panel-deny:hover,
+#request-panel-close:hover {
+  cursor: pointer;
+}
+#request-panel-accept:disabled {
+  background-color: #efefef;
+  cursor: default;
+  color: #ccc;
+}
+#request-panel-accept {
+  background-color: #7FC242;
+  border: 0;
+  color: #fff;
+  font-size: 24px;
+  padding: 1em;
+  margin-right: 0.5em;
+}
+#request-panel-accept {
+  background-color: #7FC242;
+  border: 0;
+  color: #fff;
+  font-size: 24px;
+  padding: 1em;
+}
+#request-panel-deny,
+#request-panel-close {
+  background-color: rgb(253, 0, 139);
+  border: 0;
+  color: #fff;
+  font-size: 24px;
+  padding: 1em;
+}
+#request-panel-close {
+  display: none;
+}
+.accept-request, .btn {
+  cursor: pointer;
+  background-color: #7FC242;
+  border: 0;
+  color: #fff;
+  font-size: 14px;
+  padding: 0.5em;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  margin-right: 0.5em;
+}
+.deny-request {
+  cursor: pointer;
+  background-color: rgb(253, 0, 139);
+  border: 0;
+  color: #fff;
+  font-size: 14px;
+  padding: 0.5em;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+.container {
+  width: 960px;
+  margin: 0 auto;
+}
+#home-panel,
+#users-panel,
+#game-panel {
+    padding-bottom: 3em;
+    padding-top: 3em;
+}
+
+#game-panel,
+#game-request-panel {
+  display: none;
+}
+#home-panel {
+  border-top: none;
+  display: block;
+  padding-bottom: 0;
+  padding-top: 3em;
+}
+#home-intro,
+#home-outro {
+  text-align: center;
+  font-size: 24px;
+  line-height: 1.5em;
+  padding: 3em 0;
+  color: #777;
+}
+#home-outro {
+  text-align: left;
+  margin-bottom: 0;
+  font-size: 18px;
+}
+.home-column h1 {
+  font-size: 22px;
+  color: #333;
+  line-height: 1.5em;
+  font-weight: bold;
+}
+.home-column p {
+  margin-bottom: 1.5em;
+}
+.home-column {
+  width: 460px;
+  float: left;
+}
+.home-column:first-child {
+  margin-right: 40px;
+}
+#home-outro:after {
+  display: block;
+  content:"";
+  clear: both;
+}
+.home-container:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+#guest-block {
+  float: left;
+  width: 400px;
+  padding: 30px;
+}
+#guest-block h1,
+#signin-block h1,
+#signup-block h1 {
+  font-size: 20px;
+  line-height: 1.5em;
+  text-align: left;
+  color: #fff;
+  margin-bottom: 0.5em;
+  font-weight: bold;
+}
+#guest-block p, #signin-block p {
+  margin-bottom: 1.5em;
+  line-height: 1.5em;
+  text-align: left;
+}
+.btn-danger {
+  color: #c2dbf1;;
+  padding: 0.5em 1em;
+  font-size: 1em;
+  line-height: 1.5em;
+}
+.btn-danger:hover {
+  color: #fff;
+}
+#signin-block {
+  width: 400px;
+  float: right;
+  background-color: rgba(100,100,100,0.5);
+  padding: 30px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+#signup-block,
+#settings-block {
+  width: 400px;
+  background-color: rgba(100,100,100,0.5);
+  padding: 30px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #fff;
+  margin: 3em auto;
+}
+#signin-block a {
+  color: #c2dbf1;
+}
+#signin-block a:hover {
+  color: #fff;
+}
+.home-container {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 50px;
+  color: #fff;
+}
+.clear {
+  clear: both;
+}
+#notifications-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #333;
+  color: #fff;
+  z-index: 4;
+}
+.notification {
+  line-height: 3em;
+  font-size: 18px;
+}
+.notification span {
+  float: right;
+}
+#game-request-panel {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  z-index: 5;
+  min-height: 100%;
+  background-image: url(../img/panel_background.png);
+}
+#request-panel-message {
+  font-size: 38px;
+  font-weight: bold;
+  line-height: 1.5em;
+  margin: 1em auto;
+  width: 800px;
+}
+#board-message.show {
+  -webkit-animation: appear-animation 0.3s ease-out 0 1;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation: appear-animation 0.3s ease-out 0s 1;
+  -moz-animation-fill-mode: forwards;
+}
+#notifications-panel .notification.show,
+#game-request-panel.show {
+  -webkit-animation: show-animation 0.3s ease-out 0 1;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation: show-animation 0.3s ease-out 0s 1;
+  -moz-animation-fill-mode: forwards;
+  display: block;
+}
+#notifications-panel .notification.hide, #game-request-panel.hide {
+  -webkit-animation: hide-animation 0.3s ease-out 0 1;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation: hide-animation 0.3s ease-out 0s 1;
+  -moz-animation-fill-mode: forwards;
+}
+#home-panel:after,
+#users-panel:after,
+#game-panel:after {
+  display: block;
+  content: "";
+  clear: both;
+}
+#users {
+  background-color: #fff;
+  width: 350px;
+  height: 576px;
+  border: 5px solid #fff;
+  overflow: scroll;
+  float: right;
+}
+#game-sidebar {
+  width: 350px;
+  height: 586px;
+  float: right;
+}
+#dashboard {
+  overflow: hidden;
+  height: 190px;
+  background-color: #FEE664;
+  border-bottom: 5px solid #fedb21;
+  padding-top: 20px;
+  color: #524501;
+  font-size: 24px;
+}
+#dashboard-light, #dashboard-dark {
+  line-height: 1.5em;
+}
+#dashboard-light:before {
+  display: inline-block;
+  content: " ";
+  background-color: #FFF;
+  -moz-border-radius: 100%;
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+  margin: 0 0.5em;
+  width: 1em;
+  height: 1em;
+  vertical-align: text-bottom;
+}
+#dashboard-dark:before {
+  display: inline-block;
+  content: " ";
+  background-color: #000;
+  -moz-border-radius: 100%;
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+  margin: 0 0.5em;
+  width: 1em;
+  height: 1em;
+  vertical-align: text-bottom;
+}
+#dashboard-turn {
+  color: #d8b603;
+  font-weight: bold;
+  line-height: 1.5em;
+  font-size: 18px;
+  margin-left: 2.5em;
+}
+#dashboard-end-game {
+  background-color: #d8b603;
+  float: right;
+  border: none;
+  font-size: 18px;
+  margin-right: 2.5em;
+  font-weight: bold;
+  color: #FEE664;
+  cursor: pointer;
+}
+#dashboard-end-game:hover {
+  color: #fff;
+  background-color: rgb(253, 0, 139);
+}
+#dark-disks-count,
+#light-disks-count {
+  display: block;
+  margin-left: 2.5em;
+  font-size: 18px;
+  margin-bottom: 1em;
+}
+.server-message {
+  color: #aaa;
+  font-style: italic;
+}
+.user {
+  padding: 0;
+  line-height: 3em;
+  border-bottom: 1px solid #efefef;
+  cursor: pointer;
+}
+.user:before {
+  display: inline-block;
+  content: " ";
+  background-color: #7FC242;
+  -moz-border-radius: 100%;
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+  margin: 0 1em;
+  width: 1em;
+  height: 1em;
+  vertical-align: text-bottom;
+}
+.me {
+  cursor: default;
+  color: #888;
+}
+.me:before {
+  background-color: #efefef;
+}
+.playing {
+  cursor: default;
+}
+.playing:before {
+  background-color: #FF8A3C;
+}
+.chat-username {
+  color: #388BD1;
+}
+#game-chat {
+  height: 310px;
+  overflow: scroll;
+}
+#chat {
+  width: 100%;
+  height: 525px;
+  overflow: scroll;
+}
+#chat-container {
+  border: 5px solid #fff;
+  background-color: #fff;
+  overflow: hidden;
+  display: block;
+  width: 576px;
+  height: 576px;
+  float: left;
+  position: relative;
+}
+#game-chat-container {
+  border: 5px solid #fff;
+  border-bottom: 5px solid #fff;
+  background-color: #fff;
+  overflow: hidden;
+  display: block;
+  height: 361px;
+  float: left;
+  position: relative;
+  width: 340px;
+}
+#game-chat-input,
+#chat-input {
+  border: none;
+  border-top: 1px solid #ccc;
+  width: 100%;
+  font-size: 18px;
+  line-height: 1.5em;
+  padding: 0.5em 0;
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  background-color: inherit;
+}
+#board-message {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255,255,255,0.8);
+  text-align: center;
+  font-size: 36px;
+  color: #333;
+  display: none;
+}
+#board-message-text {
+  display: block;
+  margin-top: 3em;
+  line-height: 3em;
+}
+#board-message-button {
+  font-family: 'helvetica neue', arial, sans-serif;
+  font-size: 18px;
+  padding: 0.5em;
+  background-color: #7FC242;
+  border: none;
+  color: #fff;
+  margin-bottom: 1em;
+  cursor: pointer;
+}
+#board {
+  border: 5px solid #2E8C59;
+  display: block;
+  width: 576px;
+  float: left;
+  position: relative;
+}
+.row {
+  width: 100%;
+}
+.row:after {
+  display: block;
+  content: "";
+  clear: both;
+}
+.square {
+  float: left;
+  width: 70px;
+  height: 70px;
+  background-color: #3FBF79;
+  border: 1px solid #72d09d;
+  border-left: 1px solid #72d09d;
+  border-right: 1px solid #a5e1c0;
+  border-bottom: 1px solid #a5e1c0;
+  border-top: 1px solid #72d09d;
+}
+.disk:after {
+  display: block;
+  width: 50px;
+  height: 50px;
+  content: " ";
+  -moz-border-radius: 100%;
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+  margin: 10px;
+}
+.light:after {
+    background-color: #fff;
+}
+.dark:after {
+  background-color: #000;
+}
+.error-msg {
+  -webkit-animation: error-animation 1s linear 0 infinite alternate;
+  -moz-animation: error-animation 1s linear 0s infinite alternate;
+  color: #e55;
+  margin-bottom: 1.5em;
+  line-height: 1.5em;
+}
+.generic-msg {
+  color: #fff;
+  padding-top: 3em;
+}
+.text-block {
+  width: 600px;
+  background-color: rgba(100,100,100,0.5);
+  padding: 30px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #fff;
+  margin: 3em auto;
+}
+.text-block h1 {
+  font-size: 1.5em;
+  line-height: 1.5em;
+}
+.text-block p {
+  margin-bottom: 1.5em;
+}
+.text-block p a {
+  color: #c2dbf1;
+}
+.text-block p a:hover {
+  color: #fff;
+}
+
+/*************************
+ ***** media queries *****
+ *************************/
+
+@media (max-width: 1200px) {
+  #chat-container, #users {
+    height: 480px;
+  }
+  #chat {
+    height: 430px;
+  }
+  #board {
+    width: auto;
+    margin-left: 60px;
+  }
+  .square {
+    float: left;
+    width: 60px;
+    height: 60px;
+  }
+  .disk:after {
+    width: 40px;
+    height: 40px;
+    margin: 10px;
+  }
+  #game-sidebar {
+    width: 350px;
+    height: auto;
+    float: right;
+  }
+  #game-chat-container {
+    height: 280px;
+  }
+  #game-chat {
+    height: 230px;
+  }
+}

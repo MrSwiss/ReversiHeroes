@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+      <meta charset="utf-8">
+      <title>Rev&#477;rsi Heroes - play Reversi online</title>
+      <link rel="stylesheet" href="/css/style.css" type="text/css">
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <a href="/" id="logo">Rev&#477;rsi Heroes</a>
+        <div id="navigation">
+        {% if auth %}
+          <a href="/signout">Sign Out</a>
+          {% if id %}
+            <a href="/settings">Settings</a>
+          {% endif %}
+        {% else %}
+          <a href="/signup">Sign Up</a>
+          <a href="/rules">Rules</a>
+        {% endif %}
+        </div>
+      </div>
+    </header>
+    {% block content %}
+    {% endblock %}
+    {% block js %}{% endblock %}
+  </body>
+</html>

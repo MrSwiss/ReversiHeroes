@@ -1,0 +1,3 @@
+.vagrant/*
+provision.lock
+node_modules/*
