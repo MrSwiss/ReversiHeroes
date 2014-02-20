@@ -27,9 +27,7 @@ var express = require('express')
   , swig = require('swig')
   , cookie = require('express/node_modules/cookie')
   , connectUtils = require('express/node_modules/connect/lib/utils')
-  , bcrypt = require('bcrypt')
   , expressValidator = require('express-validator')
-  , nodemailer = require("nodemailer")
   , port = 8080
   , users = {}
   , games = {}
@@ -55,304 +53,28 @@ MongoClient.connect('mongodb://localhost:27017/reversi', function(err, db) {
 
   if (err) throw err;
 
-  /**
-   * check if user is authenticated
-   */
-  var auth = function(req, res, next) {
-    if(!req.session.username) {
-      res.redirect('/');
-    } else {
-      next();
-    }
-  }
-
-  /**
-   * check if user is a guest
-   */
-  var notGuest = function(req, res, next) {
-    if(!req.session.id) {
-      res.redirect('/');
-    } else {
-      next();
-    }
-  }
-
   // set up the view engine
   app.engine('html', swig.renderFile);
   app.set('view engine', 'html');
   app.set('views', __dirname + '/views');
-  swig.setDefaults({ cache: false });
+  swig.setDefaults({ 'cache': false });
 
-  /**
-   * get homepage
-   */
-  app.get('/', function(req, res) {
-    if(req.session.username) {
-      res.redirect('/play');
-    } else {
-      res.render('home');
-    }
-  });
+  // routes
+  var routes = require('./lib/routes').create({ 'db': db, 'mandrillAuth': mandrillAuth, 'users': users });
 
-  /**
-   * sign in form data
-   */
-  app.post('/', function(req, res) {
-    var username = req.body.username;
-    var password = req.body.password;
-
-    db.collection('users').findOne({'username': username}, function(err, doc) {
-      if(!err && doc) {
-        bcrypt.compare(password, doc.password, function(err, match) {
-          if(match == true) {
-            req.session.username = doc.username;
-            req.session.id = doc._id;
-            res.redirect('/play');
-          } else {
-            res.render('home', {
-              'errors': {
-                'msg': 'The username or password is not valid'
-              },
-              'values': req.body
-            });
-          }
-        });
-      } else {
-        res.render('home', {
-          'errors': {
-            'msg' : 'The username or password is not valid'
-          },
-          'values': req.body
-        });
-      }
-    });
-  });
-
-  /**
-   * show sign up page
-   */
-  app.get('/signup', function(req, res) {
-    if(req.session.username) {
-      res.redirect('/play');
-    } else {
-      res.render('signup');
-    }
-  });
-
-  /**
-   * sign up user data
-   */
-  app.post('/signup', function(req, res) {
-    var username = req.body.username;
-    var email = req.body.email;
-    var password = req.body.password;
-
-    req.checkBody('username', 'Please use alphanumeric characters').isAlphanumeric();
-    req.checkBody('email', 'Please enter a valid email address').isEmail();
-    req.checkBody('password', 'Please enter a password').notEmpty();
-
-    var errors = req.validationErrors(true);
-
-    if(!errors) {
-      db.collection('users').findOne({'username':username}, function(err, doc) {
-        if(!doc) {
-          bcrypt.hash(password, 10, function(err, hash) {
-            db.collection('users').insert({
-              'username': username,
-              'email': email,
-              'password': hash
-            }, function(err, docs) {
-              if(!err) {
-                req.session.id = docs[0]._id;
-                req.session.username = docs[0].username;
-                res.redirect('/play');
-              }
-            });
-          });
-        } else {
-          errors = {
-            'username': {
-              'param': "username",
-              'msg': "This username is already taken",
-              'value': username
-            }
-          };
-          res.render('signup', {'errors': errors, 'values': req.body });
-        }
-      });
-    } else {
-      res.render('signup', {'errors': errors, 'values': req.body });
-    }
-  });
-
-  /**
-   * sign in as guest user
-   */
-  app.get('/guest', function(req, res) {
-    var username = 'guest' + Math.floor(Math.random() * 9999 /*99999999*/);
-    if(users[username]) {
-      res.render('home', {'guestError': 'Too many guest users. Please try again later.'});
-    } else {
-      req.session.username = username;
-      res.redirect('/play');
-    }
-  });
-
-  /**
-   * load game only if user has signed in
-   */
-  app.get('/play', auth, function(req, res) {
-    res.render('play', {
-      'auth' : true,
-      'id': req.session.id
-    });
-  });
-
-  /**
-   * show settings form
-   */
-   app.get('/settings', auth, notGuest, function(req, res) {
-     db.collection('users').findOne({'_id': ObjectID(req.session.id)}, function(err, doc) {
-       if(!err && doc) {
-          res.render('settings', {
-            'values' : {
-              'username': doc.username,
-              'email' : doc.email
-            },
-            'auth' : true,
-            'id': req.session.id
-          });
-       }
-     });
-   });
-
-   /**
-    * update user settings
-    */
-    app.post('/settings', auth, notGuest, function(req, res) {
-      req.checkBody('email', 'Please enter a valid email address').isEmail();
-
-      if(req.body.password) {
-        var repeat = req.body.repeat;
-        req.checkBody('password', 'Password and repeat password must match').equals(repeat);
-      }
-
-      var errors = req.validationErrors(true);
-
-      if(errors) {
-        res.render('settings', {
-          'errors': errors,
-          'values': req.body,
-          'auth':true,
-          'id': req.session.id
-        });
-      } else {
-        var user = {
-          'email' : req.body.email
-        };
-
-        if(req.body.password) {
-          bcrypt.hash(req.body.password, 10, function(err, hash) {
-            user.password = hash;
-            db.collection('users').update({'_id': ObjectID(req.session.id)}, {$set: user}, function(err, docs) {
-              res.redirect('/play');
-            });
-          });
-        } else {
-          db.collection('users').update({'_id': ObjectID(req.session.id)}, {$set: user}, function(err, docs) {
-            res.redirect('/play');
-          });
-        }
-      }
-    });
-
-  /**
-   * destroy session and redirect to homepage
-   */
-  app.get('/signout', function(req, res) {
-    req.session = null;
-    res.redirect('/');
-  });
-
-  /**
-   * show password recovery form
-   */
-  app.get('/recovery', function(req, res) {
-    res.render('recovery');
-  });
-
-  /**
-   * create recovery token and send email link
-   */
-  app.post('/recovery', function(req, res) {
-    var email = req.body.email;
-    db.collection('users').findOne({'email': email}, function(err, doc) {
-      if(!err && doc) {
-        var now = new Date();
-        var token = Math.floor(Math.random() * 10) + parseInt(now.getTime()).toString(36);
-        db.collection('users').update({'_id': doc._id}, {$set: {'token': token}}, function(err, docs) {
-          if(err) throw err;
-          var url = req.protocol + '://' + req.get('Host') + '/recovery/' + token;
-
-            var smtpTransport = nodemailer.createTransport("SMTP",{
-                service: "Mandrill",
-                auth: mandrillAuth
-            });
-
-            var mailOptions = {
-                from: mandrillAuth.user, // sender address
-                to: doc.email, // list of receivers
-                subject: "Password Recovery", // Subject line
-                text: "Please follo this link to reset your password: \r\n \r\n" + url, // plaintext body
-                html: "<p>Please follow this link to reset your password</p><p><a href=\""
-                + url + "\">" + url + "</a></p>" // html body
-            };
-
-            smtpTransport.sendMail(mailOptions, function(error, response){
-                if(error){
-                    console.log(error);
-                } else {
-                    console.log("Message sent: " + response.message);
-                }
-
-                smtpTransport.close();
-            });
-
-          res.render('generic', {'message': 'We sent you an email to help you reset your password.'});
-        });
-      } else {
-        res.render('recovery', { errors: { msg: 'This email does not exist'}, values: req.body});
-      }
-    });
-  });
-
-  /**
-   * log in the user using the recovery token
-   */
-  app.get('/recovery/:token', function(req, res) {
-    var token = req.params.token;
-    db.collection('users').findOne({'token':token}, function(err, doc) {
-      if(!err && doc) {
-        req.session.username = doc.username;
-        req.session.id = doc._id;
-        db.collection('users').update({'_id': doc._id}, {$set: {'token': null}}, function(err, doc){
-            res.redirect('/settings');
-        });
-      } else {
-        res.render('generic', {'message': 'The token has already expired'});
-      }
-    });
-  });
-
-  /**
-   * show rules page
-   */
-   app.get('/rules', function(req, res) {
-     res.render('rules', {
-       'auth': req.session.username,
-       'id': req.session.id
-     });
-   });
+  app.get('/', routes.getHome);
+  app.post('/', routes.postSignIn);
+  app.get('/signup', routes.getSignUp);
+  app.post('/signup', routes.postSignUp);
+  app.get('/guest', routes.getGuest);
+  app.get('/play', routes.authMiddleware, routes.getPlay);
+  app.get('/settings', routes.authMiddleware, routes.notGuestMiddleware, routes.getSettings);
+  app.post('/settings', routes.authMiddleware, routes.notGuestMiddleware, routes.postSettings);
+  app.get('/signout', routes.getSignOut);
+  app.get('/recovery', routes.getRecovery);
+  app.post('/recovery', routes.postRecovery);
+  app.get('/recovery/:token', routes.getRecoverySignIn);
+  app.get('/rules', routes.getRules);
 
   /*************************
    ***** SOCKET EVENTS *****
