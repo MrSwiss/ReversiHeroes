@@ -61,7 +61,7 @@
 
 @-webkit-keyframes error-animation {
   0% {
-    color: color: #e55;
+    color: #e55;
   }
   100% {
     color: #FD008B;
@@ -70,7 +70,7 @@
 
 @-moz-keyframes error-animation {
   0% {
-    color: color: #e55;
+    color: #e55;
   }
   100% {
     color: #FD008B;
