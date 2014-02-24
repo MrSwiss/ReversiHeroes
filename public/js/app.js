@@ -261,6 +261,7 @@
      * initialize application
      */
     socket.on('init', function(data) {
+      $('#loading-panel').hide();
       App.userName = data.username;
       App.gamePanel.hide();
       App.userList.empty();

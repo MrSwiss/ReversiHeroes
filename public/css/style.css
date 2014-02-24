@@ -77,6 +77,24 @@
   }
 }
 
+@-webkit-keyframes loading-animation {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-moz-keyframes loading-animation {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 /*****************
  ***** reset *****
  *****************/
@@ -737,7 +755,27 @@ li {
 .text-block p a:hover {
   color: #fff;
 }
-
+#loading-panel {
+  background-color: rgb(56, 139, 209);;
+  background-image: url(../img/background.png);
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+#loading-panel p {
+  opacity: 0;
+  color: #fff;
+  width: 50%;
+  margin: 1.5em auto;
+  padding: 1.5em;
+  text-align: center;
+  font-size: 1.5em;
+  -webkit-animation: loading-animation 0.5s infinite ease-out 1s;
+  -moz-animation: loading-animation 0.5s infinite ease-out 1s;
+}
 /*************************
  ***** media queries *****
  *************************/
