@@ -1,3 +1,44 @@
+/*
+==============================================
+pulse
+==============================================
+*/
+
+.pulse{
+  animation-name: pulse;
+  -webkit-animation-name: pulse;
+
+  animation-duration: 1s;
+  -webkit-animation-duration: 1s;
+
+  animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.1;
+  }
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.1;
+  }
+}
+
 /**********************
  ***** animations *****
  **********************/
@@ -74,24 +115,6 @@
   }
   100% {
     color: #FD008B;
-  }
-}
-
-@-webkit-keyframes loading-animation {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-@-moz-keyframes loading-animation {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
   }
 }
 
@@ -773,8 +796,6 @@ li {
   padding: 1.5em;
   text-align: center;
   font-size: 1.5em;
-  -webkit-animation: loading-animation 0.5s infinite ease-out 1s;
-  -moz-animation: loading-animation 0.5s infinite ease-out 1s;
 }
 /*************************
  ***** media queries *****
