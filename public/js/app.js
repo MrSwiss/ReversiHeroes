@@ -258,6 +258,12 @@
     socket = io.connect();
 
     /**
+     * sound variables
+     */
+    var clickSnd = new Howl({urls: ['/snd/click.wav']});
+    var bellSnd = new Howl({urls: ['/snd/bell.wav']});
+
+    /**
      * initialize application
      */
     socket.on('init', function(data) {
@@ -553,11 +559,4 @@
 
      // initialize socket
     initSocket();
-
-    /**
-     * sound variables
-     */
-    var clickSnd = new Howl({urls: ['/snd/click.wav']});
-    var bellSnd = new Howl({urls: ['/snd/bell.wav']});
-
 })(jQuery);
