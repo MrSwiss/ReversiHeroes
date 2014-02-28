@@ -39,48 +39,111 @@ pulse
   }
 }
 
+/*
+==============================================
+slideDown
+==============================================
+*/
+
+
+.slideDown{
+  animation-name: slideDown;
+  -webkit-animation-name: slideDown;
+
+  animation-duration: 0.7s;
+  -webkit-animation-duration: 0.7s;
+
+  animation-timing-function: ease;
+  -webkit-animation-timing-function: ease;
+
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+
+  visibility: visible !important;
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-100%);
+  }
+  50%{
+    transform: translateY(8%);
+  }
+  65%{
+    transform: translateY(-4%);
+  }
+  80%{
+    transform: translateY(4%);
+  }
+  95%{
+    transform: translateY(-2%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+@-webkit-keyframes slideDown {
+  0% {
+    -webkit-transform: translateY(-100%);
+  }
+  50%{
+    -webkit-transform: translateY(8%);
+  }
+  65%{
+    -webkit-transform: translateY(-4%);
+  }
+  80%{
+    -webkit-transform: translateY(4%);
+  }
+  95%{
+    -webkit-transform: translateY(-2%);
+  }
+  100% {
+    -webkit-transform: translateY(0%);
+  }
+}
+
+/*
+==============================================
+slideUp
+==============================================
+*/
+
+.slideUp{
+  animation-name: slideUp;
+  -webkit-animation-name: slideUp;
+
+  animation-duration: .3s;
+  -webkit-animation-duration: .3s;
+
+  animation-timing-function: ease;
+  -webkit-animation-timing-function: ease;
+
+  visibility: visible !important;
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+@-webkit-keyframes slideUp {
+  0% {
+    -webkit-transform: translateY(0%);
+  }
+  100% {
+    -webkit-transform: translateY(-100%);
+  }
+}
+
 /**********************
  ***** animations *****
  **********************/
-@-webkit-keyframes show-animation {
-  0% {
-    margin-top: -100%;
-    bottom: 100%;
-  }
-  100% {
-    margin-top: 0;
-  }
-}
-
-@-moz-keyframes show-animation {
-  0% {
-    margin-top: -100%;
-    bottom: 100%;
-  }
-  100% {
-    margin-top: 0;
-  }
-}
-
-@-webkit-keyframes hide-animation {
-  0% {
-    margin-top: 0;
-  }
-  100% {
-    margin-top: -100%;
-    bottom: 100%;
-  }
-}
-
-@-moz-keyframes hide-animation {
-  0% {
-    margin-top: 0;
-  }
-  100% {
-    margin-top: -100%;
-    bottom: 100%;
-  }
-}
 
 @-webkit-keyframes appear-animation {
   0% {
@@ -342,9 +405,12 @@ li {
     padding-top: 3em;
 }
 
-#game-panel,
-#game-request-panel {
+#game-panel {
   display: none;
+}
+#game-request-panel {
+  transform: translateY(-100%);
+  -webkit-transform: translateY(-100%);
 }
 #home-panel {
   border-top: none;
@@ -496,20 +562,6 @@ li {
   -webkit-animation: appear-animation 0.3s ease-out 0 1;
   -webkit-animation-fill-mode: forwards;
   -moz-animation: appear-animation 0.3s ease-out 0s 1;
-  -moz-animation-fill-mode: forwards;
-}
-#notifications-panel .notification.show,
-#game-request-panel.show {
-  -webkit-animation: show-animation 0.3s ease-out 0 1;
-  -webkit-animation-fill-mode: forwards;
-  -moz-animation: show-animation 0.3s ease-out 0s 1;
-  -moz-animation-fill-mode: forwards;
-  display: block;
-}
-#notifications-panel .notification.hide, #game-request-panel.hide {
-  -webkit-animation: hide-animation 0.3s ease-out 0 1;
-  -webkit-animation-fill-mode: forwards;
-  -moz-animation: hide-animation 0.3s ease-out 0s 1;
   -moz-animation-fill-mode: forwards;
 }
 #home-panel:after,

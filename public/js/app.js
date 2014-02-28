@@ -289,8 +289,8 @@
         $('#request-panel-deny').data('username', $(e.currentTarget).data('username'));
         $('body,html').animate( { scrollTop: '0px' });
         $('#game-request-panel')
-          .removeClass('show hide')
-          .addClass('show');
+          .removeClass('slideUp')
+          .addClass('slideDown');
       });
 
       /**
@@ -346,7 +346,7 @@
      */
     socket.on('request', function(data) {
       if(data.status == 'request') {
-        $('#notifications-panel').append('<div class="notification container show" id="r-' + data.username
+        $('#notifications-panel').append('<div class="notification container slideDown" id="r-' + data.username
         + '" data-username="' 
         + data.username + '">Game request by '
         + data.username 
@@ -387,7 +387,7 @@
         $('#dashboard-light').text(data.lights);
         $('#dashboard-dark').text(data.darks);
         App.gamePanel.show();
-        $('#game-request-panel').addClass('hide');
+        $('#game-request-panel').removeClass('slideDown').addClass('slideUp');
       }
     });
 
@@ -498,7 +498,7 @@
      * click the deny button in the requests panel
      */
     $('#request-panel-deny').on('click', function(e) {
-      $('#game-request-panel').addClass('hide');
+      $('#game-request-panel').removeClass('slideDown').addClass('slideUp');
       socket.emit('request', {
         status:'deny',
         username: $(e.currentTarget).data('username')
@@ -509,7 +509,7 @@
      * close game request panel
      */
     $('#request-panel-close').on('click', function(e) {
-      $('#game-request-panel').addClass('hide');
+      $('#game-request-panel').removeClass('slideDown').addClass('slideUp');
     });
 
     /**
