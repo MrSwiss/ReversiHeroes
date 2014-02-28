@@ -31,7 +31,7 @@ var express = require('express')
   , port = 3000
   , users = {}
   , games = {}
-  , reversi = require('./reversi');
+  , reversi = require('./lib/reversi');
 
 // Mandrill authentication
 var mandrillAuth =  {
