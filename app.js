@@ -28,6 +28,7 @@ var express = require('express')
   , expressValidator = require('express-validator')
   , port = 3000
   , users = {} 
+  , bots = require('./lib/bots')
   , websockets = require('./lib/websockets');
 
 // Mandrill authentication
@@ -56,8 +57,24 @@ MongoClient.connect('mongodb://localhost:27017/reversi', function(err, db) {
   app.set('views', __dirname + '/views');
   swig.setDefaults({ 'cache': false });
 
-  // routes
-  var routes = require('./lib/routes').create({ 'db': db, 'mandrillAuth': mandrillAuth, 'users': users });
+  // add bots to the users object
+  for(var i=0;i<bots.bots.length;i++) {
+    users[bots.bots[i].name] = {
+      'username': bots.bots[i].name,
+      'bot': true
+    }
+  }
+
+  /******************
+   ***** ROUTES *****
+   ******************/
+
+  var routes = require('./lib/routes').create({ 
+      'db': db
+    , 'mandrillAuth': mandrillAuth
+    , 'users': users
+    , 'bots': bots
+  });
 
   app.get('/', routes.getHome);
   app.post('/', routes.postSignIn);
@@ -80,7 +97,7 @@ MongoClient.connect('mongodb://localhost:27017/reversi', function(err, db) {
   /**
    * init websockets module
    */
-  websockets.init(users);
+  websockets.init(users, bots.bots);
 
    /**
     * check session cookie to authorize the socket and accept the connection
@@ -95,8 +112,7 @@ MongoClient.connect('mongodb://localhost:27017/reversi', function(err, db) {
   io.sockets.on('connection', function (socket) {
     websockets.connection({
       'socket': socket,
-      'io': io,
-      'users': users
+      'io': io
     });
   });
 

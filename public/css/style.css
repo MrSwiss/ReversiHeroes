@@ -790,11 +790,14 @@ li {
   border-radius: 100%;
   margin: 10px;
 }
-.light:after {
+.lights:after {
     background-color: #fff;
 }
-.dark:after {
+.darks:after {
   background-color: #000;
+}
+.bot {
+  background-color: #fafafa;
 }
 .error-msg {
   -webkit-animation: error-animation 1s linear 0 infinite alternate;

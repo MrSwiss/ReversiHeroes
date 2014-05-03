@@ -56,20 +56,24 @@
      * @param boolean playing - user is currently playing
      * @param boolean notice - add notice message to the chat room
      */
-    addUser: function(user, playing, notice) {
+    addUser: function(user, notice) {
       var n = 0;
       var inserted = false;
       var classes = '';
-      if(playing) classes = ' playing';
-      if(user == App.userName) classes += ' me';
+      if(user.playing) classes = ' playing';
+      if(user.username == App.userName) classes += ' me';
+      if(user.bot == true) {
+        classes += ' bot';
+      }
+      
       var currentUsers = this.userList.find('li');
-      var userElement = '<li id="u-' + user + '" class="user' + classes
-      + '" data-username="' + user + '">'
-      + user + '</li>';
+      var userElement = '<li id="u-' + user.username + '" class="user' + classes
+      + '" data-username="' + user.username + '">'
+      + user.username + '</li>';
 
       for(n=0;n<currentUsers.length;n++) {
         var currentElement = $(currentUsers[n]);
-        if(currentElement.data('username') > user) {
+        if(currentElement.data('username') > user.username) {
           currentElement.before(userElement);
           inserted = true;
           break;
@@ -81,7 +85,7 @@
       }
 
       if(notice) {
-        App.addChat(user + ' joined Rev&#477;rsi Heroes.</li>');
+        App.addChat(user.username + ' joined Rev&#477;rsi Heroes.</li>');
       }
     },
 
@@ -145,13 +149,13 @@
       for(y=0;y<8;y++) {
         for(x=0;x<8;x++) {
           var square = $('#' + x + '-' + y);
-          square.removeClass('disk dark light');
+          square.removeClass('disk darks lights');
           if(this.board[x][y]) {
             square.addClass('disk ' + this.board[x][y]);
           }
-          if(square.hasClass('dark')) {
+          if(square.hasClass('darks')) {
             darks++;
-          } else if(square.hasClass('light')) {
+          } else if(square.hasClass('lights')) {
             lights++;
           }
         }
@@ -278,7 +282,7 @@
         .addChat('Click on the users with the green light to start playing.');
 
       for(user in data.users) {
-        App.addUser(user, data.users[user].playing, false);
+        App.addUser(data.users[user], false);
       }
 
       /**
@@ -286,7 +290,8 @@
        */
       $(document).on('click', '.user', function(e) {
         if($(e.currentTarget).hasClass('playing') || $(e.currentTarget).hasClass('me')) return;
-        $('#request-panel-message').text('Request a game play with ' + $(e.currentTarget).data('username') + '.');
+        $('#request-panel-message')
+          .text('Request a game play with ' + $(e.currentTarget).data('username') + '.');
         $('#request-panel-accept')
           .removeAttr('disabled')
           .data('username', $(e.currentTarget).data('username'));
@@ -322,7 +327,7 @@
      * new user connects
      */
     socket.on('user connection', function(data) {
-      App.addUser(data.user, false, true);
+      App.addUser({'username': data.user, 'playing': false}, true);
     });
 
     /**
@@ -373,11 +378,11 @@
 
         var oponent = '';
         if(data.lights == App.userName) {
-          reversi.disk = 'light';
+          reversi.disk = 'lights';
           $('#dashboard-turn').text('Darks turn');
           oponent = data.darks;
         } else {
-          reversi.disk = 'dark';
+          reversi.disk = 'darks';
           $('#dashboard-turn').text('Your turn');
           oponent = data.lights;
         }
@@ -401,8 +406,12 @@
      * socket on game start
      */
     socket.on('game start', function(data) {
-      App.userList.children('#u-' + data.users[0]).addClass('playing');
-      App.userList.children('#u-' + data.users[1]).addClass('playing');
+      if(!App.userList.children('#u-' + data.users[0]).hasClass('bot')) {
+        App.userList.children('#u-' + data.users[0]).addClass('playing');
+      }
+      if(!App.userList.children('#u-' + data.users[1]).hasClass('bot')) {
+        App.userList.children('#u-' + data.users[1]).addClass('playing');
+      }
       App.addChat(data.users[0] + ' and ' + data.users[1] + ' started a new game.');
     });
 
@@ -444,7 +453,7 @@
       var turnMsg = '';
       if(reversi.turn == reversi.disk) {
         turnMsg = 'Your turn';
-      } else if(reversi.turn == 'light') {
+      } else if(reversi.turn == 'lights') {
         turnMsg = 'Lights turn';
       } else {
         turnMsg = 'Darks turn';
