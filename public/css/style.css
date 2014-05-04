@@ -295,9 +295,12 @@ header:after {
 }
 footer {
   font-size: 12px;
-  text-transform: uppercase;
+  text-align: center;
   line-height: 3em;
-  color: #aaa;
+  color: #fff;
+}
+footer a {
+  border-bottom: 1px dotted #fff;
 }
 a {
   color: #fff;
