@@ -500,7 +500,8 @@ li {
 }
 #signup-block,
 #settings-block {
-  width: 400px;
+  max-width: 400px;
+  width: 100%;
   background-color: rgba(100,100,100,0.5);
   padding: 30px;
   -moz-box-sizing: border-box;
@@ -559,7 +560,8 @@ li {
   font-weight: bold;
   line-height: 1.5em;
   margin: 1em auto;
-  width: 800px;
+  width: 100%;
+  max-width: 800px;
 }
 #board-message.show {
   -webkit-animation: appear-animation 0.3s ease-out 0 1;
@@ -785,13 +787,13 @@ li {
 }
 .disk:after {
   display: block;
-  width: 50px;
-  height: 50px;
+  width: 70%;
+  height: 70%;
+  margin: 15%;
   content: " ";
   -moz-border-radius: 100%;
   -webkit-border-radius: 100%;
   border-radius: 100%;
-  margin: 10px;
 }
 .lights:after {
     background-color: #fff;
@@ -814,7 +816,8 @@ li {
   padding-top: 3em;
 }
 .text-block {
-  width: 600px;
+  max-width: 600px;
+  width: 100%;
   background-color: rgba(100,100,100,0.5);
   padding: 30px;
   -moz-box-sizing: border-box;
@@ -855,6 +858,10 @@ li {
   text-align: center;
   font-size: 1.5em;
 }
+#mobile-menu {
+  display: none;
+}
+
 /*************************
  ***** media queries *****
  *************************/
@@ -875,11 +882,6 @@ li {
     width: 60px;
     height: 60px;
   }
-  .disk:after {
-    width: 40px;
-    height: 40px;
-    margin: 10px;
-  }
   #game-sidebar {
     width: 350px;
     height: auto;
@@ -890,5 +892,152 @@ li {
   }
   #game-chat {
     height: 230px;
+  }
+}
+
+@media (max-width: 960px) {
+  header {
+      line-height: 1.5em;
+  }
+  footer, #guest-block h1, #guest-block p,
+  #chat-container, #game-chat-container {
+    display: none;
+  }
+  #signin-block , #settings-block, #guest-block {
+    width: 100%;
+    float: none;
+    padding: 1em;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: none;
+  }
+  #users {
+    width: 100%;
+     -moz-box-sizing: border-box;
+     -webkit-box-sizing: border-box;
+     box-sizing: border-box;
+    margin: 0 auto;
+    float: none;
+    height: auto;
+    min-height: 200px;
+  }
+  #navigation:before {
+    display: block;
+    content: "";
+    clear: both;
+  }
+  #navigation {
+    display: none;
+    width: 100%;
+    text-align: center;
+    float: none;
+    font-size: 16px;
+  }
+  #navigation a {
+    margin: 0 1em;
+    padding: 0 0.5em;
+    float: none;
+  }
+  #logo {
+    font-size: 18px;
+  }
+  #guest {
+    width: 100%;
+    margin: 1em 0;
+    padding: 0;
+    font-size: 18px;
+    padding: 1em 0;
+    display: block;
+    text-align: center;
+  }
+  #home-panel {
+    padding-top: 0px;
+  }
+  #request-panel-message {
+    font-size: 18px;
+  }
+  #request-panel-default-buttons button {
+    font-size: 18px;
+    width: 100%;
+    display: block;
+    margin: 1em auto;
+  }
+  .square {
+    width: 35px;
+    height: 35px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  #board-message {
+    font-size: 18px;
+    line-height: 1.5em;
+  }
+  #board {
+    width: 280px;
+    margin-left: 0px;
+    margin: 0 auto;
+    float: none;
+    margin-bottom: 10px;
+  }
+  #game-sidebar {
+    width: 280px;
+    margin: 0 auto;
+     -moz-box-sizing: border-box;
+     -webkit-box-sizing: border-box;
+     box-sizing: border-box;
+    height: auto;
+    float: none;
+  }
+  #game-panel, #users-panel {
+    padding: 1em 0;
+  }
+  #dashboard {
+    font-size: 14px;
+    height: auto;
+    padding-bottom: 20px;
+    border: none;
+  }
+  #dashboard:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+  #game-sidebar, #dashboard-end-game, #dashboard-turn,
+  #dark-disks-count, #light-disks-count {
+    font-size: 14px;
+  }
+  .dashboard-player {
+    width: 140px;
+    float: left;
+  }
+  .container {
+    width: 100%;
+    padding: 0 1em;
+    margin: none;
+     -moz-box-sizing: border-box;
+     -webkit-box-sizing: border-box;
+     box-sizing: border-box;
+  }
+  .notification span {
+    display: block;
+    width: 100%;
+  }
+  .notification span button {
+    width: 100%;
+    padding: 1em 0;
+  }
+  #mobile-menu {
+    float: right;
+    background-image: url(/img/menu.png);
+    height: 24px;
+    width: 24px;
+    padding: 0;
+    margin: 8px 0;
+    background-color: transparent;
+    border: none;
+    display: block;
+    cursor: pointer;
   }
 }

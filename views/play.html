@@ -4,6 +4,7 @@
   <script src="/socket.io/socket.io.js" type="text/javascript"></script>
   <script src="/js/jquery-2.0.3.min.js" type="text/javascript"></script>
   <script src="/js/howler.min.js" type="text/javascript"></script>
+  <script src="/js/common.js" type="text/javascript" charset="utf-8"></script>
   <script src="/js/app.js" type="text/javascript"></script>
 {% endblock %}
 
@@ -25,12 +26,14 @@
 </div>
 
 <div id="game-request-panel">
+  <div class="container">
   <p id="request-panel-message"></p>
   <div id="request-panel-default-buttons">
   <button id="request-panel-accept">Accept</button>
   <button id="request-panel-deny">Deny</button>
   </div>
   <button id="request-panel-close">Close</button>
+  </div>
 </div>
 
   <div id="users-panel">
@@ -134,11 +137,15 @@
   
   <div id="game-sidebar">
     <div id="dashboard">
-      <div id="dashboard-light">lights</div>
-      <span id="light-disks-count">2 disks</span>
-      <div id="dashboard-dark">darks</div>
-      <span id="dark-disks-count">2 disks</span>
-      <div>
+      <div class="dashboard-player">
+        <div id="dashboard-light">lights</div>
+        <span id="light-disks-count">2 disks</span>
+      </div>
+      <div class="dashboard-player">
+        <div id="dashboard-dark">darks</div>
+        <span id="dark-disks-count">2 disks</span>
+      </div>
+    <div>
       <span id="dashboard-turn">Your turn</span>
       <button id="dashboard-end-game">End game</button>
       </div>
