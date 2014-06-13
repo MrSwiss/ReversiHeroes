@@ -217,7 +217,7 @@ body {
   background: white;
   color: #333;
   font-family: 'Arial', 'helvetica neue', helvetica, sans-serif;
-  background-color: rgb(56, 139, 209);;
+  background-color: rgb(56, 139, 209);
   background-image: url(../img/background.png);
   padding-bottom: 3em;
 }
@@ -242,15 +242,16 @@ input[type=text], input[type=password], input[type=email] {
 input[type=submit] {
   border: 0;
   padding: 0.5em 1em;
-  background-color: #ccc;
   font-size: 1em;
   font-family: inherit;
   cursor: pointer;
   line-height: 1.5em;
   height: 40px;
+  background-color: #90ca5c;
+  color: #fff;
 }
 input[type=submit]:hover {
-  background-color: #eee;
+  background-color: #6eab37;
 }
 ol, li, ul {
   list-style: none;
@@ -916,9 +917,25 @@ li {
 }
 
 @media (max-width: 960px) {
+
+  #request-panel-deny,
+  #request-panel-accept,
+  #request-panel-close,
+  #dashboard-end-game,
+  #board-message-button {
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
+    border-radius: 25px;
+  }
+  #dashboard-end-game {
+    padding: .5em 1em;
+  }
   input[type=submit] {
     display: block;
     width: 100%;
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
+    border-radius: 25px;
   }
   #logo-img {
     text-align: center;
@@ -970,6 +987,9 @@ li {
     margin: none;
   }
   #users {
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
+    border-radius: 25px;
     width: 100%;
      -moz-box-sizing: border-box;
      -webkit-box-sizing: border-box;
@@ -1040,9 +1060,12 @@ li {
     margin: 0 auto;
     float: none;
     margin-bottom: 10px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
   }
   #game-sidebar {
-    width: 280px;
+    width: 290px;
     margin: 0 auto;
      -moz-box-sizing: border-box;
      -webkit-box-sizing: border-box;
@@ -1051,13 +1074,19 @@ li {
     float: none;
   }
   #game-panel, #users-panel {
-    padding: 1em 0;
+    padding: .5em 0;
   }
   #dashboard {
     font-size: 14px;
     height: auto;
-    padding-bottom: 20px;
+    padding-bottom: 1em;
+    padding-top: .5em;
     border: none;
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
+    border-radius: 25px;
+    display: block;
+    width: 100%;
   }
   #dashboard:after {
     content: "";
@@ -1068,6 +1097,11 @@ li {
   #dark-disks-count, #light-disks-count {
     font-size: 14px;
   }
+  #dark-disks-count,
+  #light-disks-count {
+    margin-bottom: .5em;
+  }
+  
   .dashboard-player {
     width: 140px;
     float: left;
