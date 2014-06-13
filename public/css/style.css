@@ -327,7 +327,7 @@ li {
 #logo {
   float: left;
 }
-#guest {
+#guest, .btn {
   border: 0;
   background-color: #7FC242;
   background-color: #90ca5c;
@@ -338,10 +338,10 @@ li {
   margin-top: 1em;
   text-align: center;
 }
-#guest:hover {
+#guest:hover, .btn:hover {
   background-color: #6eab37;
 }
-#guest:hover,
+#guest:hover, .btn:hover,
 #request-panel-accept:hover,
 #request-panel-deny:hover,
 #request-panel-close:hover {
@@ -380,7 +380,6 @@ li {
 }
 .accept-request, .btn {
   cursor: pointer;
-  background-color: #7FC242;
   border: 0;
   color: #fff;
   font-size: 14px;
@@ -489,6 +488,19 @@ li {
 .btn-danger:hover {
   color: #fff;
 }
+#play-btns {
+  display: none;
+}
+#cancel-btn {
+  background-color: #FC005D;
+  color: #fff !important;
+  color: #c2dbf1;;
+  padding: 0.5em 1em;
+  font-size: 1em;
+  line-height: 1.5em;
+  border: none;
+  display: none;
+}
 #signin-block {
   width: 400px;
   float: right;
@@ -576,12 +588,15 @@ li {
   content: "";
   clear: both;
 }
+#users-panel {
+  overflow: hidden;
+}
 #users {
   background-color: #fff;
   width: 350px;
   height: 576px;
   border: 5px solid #fff;
-  overflow: scroll;
+  overflow-x: hidden;
   float: right;
 }
 #game-sidebar {
@@ -848,6 +863,7 @@ li {
   left: 0;
   right: 0;
   bottom: 0;
+  overflow: hidden;
 }
 #loading-panel p {
   opacity: 0;
@@ -859,6 +875,10 @@ li {
   font-size: 1.5em;
 }
 #mobile-menu {
+  display: none;
+}
+
+#signin-btn, #rules-btn, #back-btn, #logo-img {
   display: none;
 }
 
@@ -896,11 +916,48 @@ li {
 }
 
 @media (max-width: 960px) {
+  input[type=submit] {
+    display: block;
+    width: 100%;
+  }
+  #logo-img {
+    text-align: center;
+    margin-bottom: 1.5em;
+    margin-top: .5em;
+    display: block;
+  }
+  #logo-img img {
+    width: 100px;
+    height: 114px;
+  }
+  .btn-danger {
+    width: 100%;
+    background-color: #FC005D;
+    color: #fff !important;
+    color: #c2dbf1;;
+    padding: 0.5em 1em;
+    font-size: 1em;
+    line-height: 1.5em;
+    border: none;
+    display: block;
+     -moz-box-sizing: border-box;
+     -webkit-box-sizing: border-box;
+     box-sizing: border-box;
+     text-align: center;
+     margin-top: 1.5em;
+  }
+  #signin-btn, #rules-btn, #back-btn, #cancel-btn {
+    color: #fff;
+    display: block;
+  }
+  #play-btns {
+    display: block;
+  }
   header {
       line-height: 1.5em;
   }
-  footer, #guest-block h1, #guest-block p,
-  #chat-container, #game-chat-container {
+  footer, #guest-block h1, #guest-block p, header, 
+  #chat-container, #game-chat-container, #signin-block {
     display: none;
   }
   #signin-block , #settings-block, #guest-block {
@@ -942,14 +999,17 @@ li {
   #logo {
     font-size: 18px;
   }
-  #guest {
+  #guest, .btn {
     width: 100%;
     margin: 1em 0;
     padding: 0;
     font-size: 18px;
-    padding: 1em 0;
+    padding: .5em 0;
     display: block;
     text-align: center;
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
+    border-radius: 25px;
   }
   #home-panel {
     padding-top: 0px;

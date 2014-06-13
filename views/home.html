@@ -7,9 +7,16 @@
           {% if guestError %}
             <p class="error-msg">{{ guestError }}</p>
           {% else %}
+          <div id="logo-img">
+            <img src="/img/logo.png">
+          </div>
             <h1>Be our guest</h1>
             <p>If you're up for a quick game without user registration you can just go ahead and play as a guest.</p>
-            <a href="/guest" id="guest">Play as guest</a>
+            <div id="home-btns">
+              <a href="/guest" id="guest" class="btn">Play as guest</a>
+              <a href="#" id="signin-btn" class="btn">Sign In</a>
+              <a href="/rules" id="rules-btn" class="btn">Rules</a>
+            </div>
           {% endif %}
         </div>
         <div id="signin-block">
@@ -24,6 +31,7 @@
             {% endif %}
             <p><a href="/recovery">Forgot your pasword?</a></p>
             <input type="submit" value="Sign In">
+            <button id="cancel-btn" class="btn">Cancel</button>
           </form>
         </div>
       </div>
