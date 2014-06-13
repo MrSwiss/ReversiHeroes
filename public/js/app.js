@@ -461,7 +461,12 @@
       $('#dashboard-turn').text(turnMsg);
       if(data.winner) {
         reversi.winner = data.winner;
-        reversi.endGame(data.winner + ' win');
+        if (data.winner == 'draw') {
+          reversi.endGame('Match draw');
+        } else {
+          reversi.endGame(data.winner + ' win');
+        }
+
       }
       clickSnd.play();
     });
