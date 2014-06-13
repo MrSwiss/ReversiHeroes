@@ -875,9 +875,6 @@ li {
   text-align: center;
   font-size: 1.5em;
 }
-#mobile-menu {
-  display: none;
-}
 
 #signin-btn, #rules-btn, #back-btn, #logo-img {
   display: none;
@@ -1121,17 +1118,5 @@ li {
   .notification span button {
     width: 100%;
     padding: 1em 0;
-  }
-  #mobile-menu {
-    float: right;
-    background-image: url(/img/menu.png);
-    height: 24px;
-    width: 24px;
-    padding: 0;
-    margin: 8px 0;
-    background-color: transparent;
-    border: none;
-    display: block;
-    cursor: pointer;
   }
 }

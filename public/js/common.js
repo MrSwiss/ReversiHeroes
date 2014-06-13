@@ -1,11 +1,3 @@
-/**
- * mobile navigation button
- */
-$('#mobile-menu').on('click', function(e) {
-  e.preventDefault();
-  $('#navigation').toggle();
-});
-
 $('#signin-btn').on('click', function(e) {
   e.preventDefault();
   $('#home-btns').hide();
