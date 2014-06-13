@@ -566,7 +566,7 @@ li {
   text-align: center;
   z-index: 5;
   min-height: 100%;
-  background-image: url(../img/panel_background.png);
+  background-image: url(../img/background.png);
 }
 #request-panel-message {
   font-size: 38px;
