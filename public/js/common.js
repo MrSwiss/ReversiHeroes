@@ -1,3 +1,8 @@
+$('a').on('click', function(e) {
+  e.preventDefault();
+  document.location = $(this).attr("href");
+});
+
 $('#signin-btn').on('click', function(e) {
   e.preventDefault();
   $('#home-btns').hide();
