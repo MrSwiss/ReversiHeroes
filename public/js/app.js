@@ -259,13 +259,20 @@
    *************************/
 
   var initSocket = function() {
-    socket = io.connect();
+    socket = io.connect('',{'max reconnection attempts' : Infinity});
 
     /**
      * sound variables
      */
     var clickSnd = new Howl({urls: ['/snd/click.wav']});
     var bellSnd = new Howl({urls: ['/snd/bell.wav']});
+
+    /**
+     * on disconnect try to open a new connection
+     */
+    socket.on('disconnect', function() {
+      $('#loading-panel').show();
+    });
 
     /**
      * initialize application
