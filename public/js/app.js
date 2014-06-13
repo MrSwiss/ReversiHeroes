@@ -494,6 +494,11 @@
       }
       reversi.drawBoard();
       socket.emit('game move', {coords: coords});
+      if (reversi.turn == 'lights') {
+        reversi.turn = 'darks';
+      } else {
+        reversi.turn = 'lights';
+      }
     });
 
     /**
