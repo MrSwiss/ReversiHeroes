@@ -88,7 +88,6 @@ MongoClient.connect('mongodb://localhost:27017/reversi', function(err, db) {
   app.get('/recovery', routes.getRecovery);
   app.post('/recovery', routes.postRecovery);
   app.get('/recovery/:token', routes.getRecoverySignIn);
-  app.get('/rules', routes.getRules);
 
   /*************************
    ***** SOCKET EVENTS *****

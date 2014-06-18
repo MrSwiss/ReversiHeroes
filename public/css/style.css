@@ -840,7 +840,7 @@ li {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   color: #fff;
-  margin: 3em auto;
+  margin: 0em auto;
 }
 .text-block h1 {
   font-size: 1.5em;
@@ -875,8 +875,15 @@ li {
   text-align: center;
   font-size: 1.5em;
 }
+#back-btn {
+  color: #fff;
+}
 
-#signin-btn, #rules-btn, #back-btn, #logo-img {
+#signin-btn, #rules-btn, #logo-img {
+  display: none;
+}
+
+#rules-block {
   display: none;
 }
 

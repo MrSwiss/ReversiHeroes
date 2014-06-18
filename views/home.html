@@ -15,7 +15,7 @@
             <div id="home-btns">
               <a href="/guest" id="guest" class="btn">Play as guest</a>
               <a href="#" id="signin-btn" class="btn">Sign In</a>
-              <a href="/rules" id="rules-btn" class="btn">Rules</a>
+              <a href="#" id="rules-btn" class="rules-btn btn">Rules</a>
             </div>
           {% endif %}
         </div>
@@ -34,7 +34,18 @@
             <button id="cancel-btn" class="btn">Cancel</button>
           </form>
         </div>
-      </div>
+
+        <div id="rules-block" class="text-block">
+          <h1>Reversi Rules</h1>
+          <p>Reversi is a strategy board game for two players. It's played on a 8x8 board, players take turns placing disks on the board with their assigned color, which can be light or dark.</p>
+          <p>The game begins with four disks placed in a square in the middle of the board, two pieces with dark color and two pieces with light color. The dark color moves first.</p>
+          <p>Dark must place a disk in such position that there exists at least one straight occupied line between the new piece and another dark piece, with one or more contiguous light pieces between them. After placing the disk all light pieces lying on a straight line in between are converted to dark pieces.</p>
+          <p>Players take alternate turns and lights play with the same rules with the roles reversed. The player with the most pieces on the board at the end of the game wins.</p>
+          <p>
+            <a href="#" class="btn" id="back-btn">Back</a>
+          </p>
+        </div>
+
     </div>
   </div>
 {% endblock %}
