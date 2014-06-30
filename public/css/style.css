@@ -481,13 +481,15 @@ li {
   text-align: left;
 }
 .btn-danger {
-  color: #c2dbf1;;
+  color: #c2dbf1;
   padding: 0.5em 1em;
   font-size: 1em;
   line-height: 1.5em;
+  background-color: #FC005D;
 }
 .btn-danger:hover {
   color: #fff;
+  background-color: #FC005D;
 }
 #play-btns {
   display: none;
@@ -500,6 +502,9 @@ li {
   font-size: 1em;
   line-height: 1.5em;
   border: none;
+  display: none;
+}
+#signup-btn {
   display: none;
 }
 #signin-block {
@@ -782,6 +787,9 @@ li {
   float: left;
   position: relative;
 }
+.mobile {
+  display: none;
+}
 .row {
   width: 100%;
 }
@@ -967,7 +975,7 @@ li {
      text-align: center;
      margin-top: 1.5em;
   }
-  #signin-btn, #rules-btn, #back-btn, #cancel-btn {
+  #signin-btn, #rules-btn, #back-btn, #cancel-btn, #signup-btn, #mobile {
     color: #fff;
     display: block;
   }
