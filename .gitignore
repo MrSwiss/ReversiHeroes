@@ -2,3 +2,4 @@
 provision.lock
 node_modules/*
 development.lock
+public/css/style.min.css

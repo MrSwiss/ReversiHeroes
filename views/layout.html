@@ -5,7 +5,11 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
       <meta name="apple-mobile-web-app-capable" content="yes">
       <title>Rev&#477;rsi Heroes - play Reversi online</title>
+      {% if settings.appMode == 'development' %}
       <link rel="stylesheet" href="/css/style.css" type="text/css">
+      {% else %}
+      <link rel="stylesheet" href="/css/style.min.css" type="text/css">
+      {% endif %}
       <link rel="apple-touch-icon" sizes="114x114" href="/img/icon114.png">
   </head>
   <body>
