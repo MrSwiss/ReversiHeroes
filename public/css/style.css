@@ -434,6 +434,12 @@ li {
   margin-bottom: 0;
   font-size: 18px;
 }
+#development {
+  text-align: center;
+  color: #fff;
+  background-color: #a00;
+  padding: .5em 0;
+}
 .home-column h1 {
   font-size: 22px;
   color: #333;

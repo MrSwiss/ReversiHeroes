@@ -9,6 +9,9 @@
       <link rel="apple-touch-icon" sizes="114x114" href="/img/icon114.png">
   </head>
   <body>
+    {% if settings.appMode == 'development' %}
+        <div id="development">DEVELOPMENT</div>
+    {% endif %}
     <header>
       <div class="container">
         <a href="/" id="logo">Rev&#477;rsi Heroes</a>

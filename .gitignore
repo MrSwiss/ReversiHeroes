@@ -1,3 +1,4 @@
 .vagrant/*
 provision.lock
 node_modules/*
+development.lock

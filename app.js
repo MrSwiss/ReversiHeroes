@@ -24,6 +24,7 @@ var express = require('express')
   , io = require('socket.io').listen(server,{ log: false })
   , MongoClient = require('mongodb').MongoClient
   , swig = require('swig')
+  , fs = require('fs')
   , cookie = require('express/node_modules/cookie')
   , expressValidator = require('express-validator')
   , port = 3000
@@ -33,9 +34,17 @@ var express = require('express')
 
 // Mandrill authentication
 var mandrillAuth =  {
-  user: "mantrill-user-name",
-  pass: "mandrill-password"
+  user: "",
+  pass: ""
 };
+
+// if development.lock doesn't exist enable production mode
+if (!fs.existsSync('./development.lock')) {
+  app.settings.env = 'production';
+  mandrillAuth = require('./settings').mandrillAuth;
+}
+
+app.set('appMode', app.settings.env);
 
 // Middleware
 app.use(express.static('public'));
