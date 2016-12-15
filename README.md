@@ -1,7 +1,14 @@
-#ReversiHeroes
-Multiplayer Reversi / Othello strategy board game.
+![ReversiHeroes](http://i.imgur.com/qZw8CKN.png)
 
-Play at [reversiheroes.com](http://reversiheroes.com) with a web browser or get the [Android App](https://play.google.com/store/apps/details?id=es.mnlg.reversiheroes).
+#ReversiHeroes
+
+ReversiHeroes is Nodejs Multiplayer Reversi / Othello strategy board game for the web.
+
+~~Play at [reversiheroes.com](http://reversiheroes.com) with a web browser or get the [Android App](https://play.google.com/store/apps/details?id=es.mnlg.reversiheroes).~~
+
+## Screenshots
+
+![Screenshots](http://i.imgur.com/fajYxg9.jpg)
 
 ##Install
 
